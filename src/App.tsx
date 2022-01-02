@@ -15,9 +15,10 @@ const Wrapper = styled('div')`
   box-shadow: 0 0 0 1px #1a1a1a, 0 8px 20px 6px #888;
 `
 
-export const App = () => {
+export const App: FC = () => {
   moment.updateLocale('en', { week: { dow: 1 } })
   const totalDays = 42
+  window.moment = moment
 
   const [currentDay, setCurrentDay] = useState(moment())
   const startDay = currentDay.clone().startOf('month').startOf('week')

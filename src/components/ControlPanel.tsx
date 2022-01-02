@@ -1,15 +1,12 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 
 interface ControlPanelProps {
-  // prettier-ignore
-  currentDay: any,
-  // prettier-ignore
-  prevHandler: () => void,
-  // prettier-ignore
-  todayHandler: () => void,
-  // prettier-ignore
-  nextHandler: () => void,
+  currentDay: any
+  prevHandler: () => void
+  todayHandler: () => void
+  nextHandler: () => void
 }
 
 const Wrapper = styled('div')`
@@ -64,9 +61,9 @@ export const ControlPanel: FC<ControlPanelProps> = ({
         <Text>{currentDay.format('YYYY')}</Text>
       </div>
       <Buttons>
-        <Wrapper onClick={prevHandler}> &lt; </Wrapper>
+        <Button onClick={prevHandler}> &lt; </Button>
         <TodayButton onClick={todayHandler}>Today</TodayButton>
-        <Wrapper onClick={nextHandler}> &gt; </Wrapper>
+        <Button onClick={nextHandler}> &gt; </Button>
       </Buttons>
     </Wrapper>
   )

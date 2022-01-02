@@ -2,35 +2,46 @@ import React, { FC } from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
 
-// interface CalendarProps {
-//   // prettier-ignore
-//   startDay:,
-//   // prettier-ignore
-//   currentDay:,
-//   // prettier-ignore
-//   totalDays:,
-// }
+interface CalendarProps {
+  startDay: any
+  currentDay: any
+  totalDays: number
+}
 
-const Wrapper = styled.div`
+interface WrapperProps {
+  isHeader?: boolean
+}
+
+interface CellWrapperProps extends WrapperProps {
+  isWeekday?: boolean
+  isSelectedMonth?: boolean
+}
+
+interface RowOfCellWrapperProps {
+  justifyContent?: string
+  pr?: number
+}
+
+const Wrapper = styled.div<WrapperProps>`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1px;
-  background-color: ${(props) => (props.isHeader ? '#1E1F21' : '#4D4C4D')};
-  ${(props) => props.isHeader && `border-bottom: 1px solid #4D4C4D`}
+  background-color: ${({ isHeader }) => (isHeader ? '#1E1F21' : '#4D4C4D')};
+  ${({ isHeader }) => isHeader && `border-bottom: 1px solid #4D4C4D`}
 `
 
-const CellWrapper = styled.div`
-  min-height: ${(props) => (props.isHeader ? 24 : 80)}px;
+const CellWrapper = styled.div<CellWrapperProps>`
+  min-height: ${({ isHeader }) => (isHeader ? 24 : 80)}px;
   min-width: 140px;
-  background-color: ${(props) => (props.isWeekday ? '#27282A' : '#1E1F21')};
-  color: ${(props) => (props.isSelectedMonth ? '#DDDDDD' : '#555759')};
+  background-color: ${({ isWeekday }) => (isWeekday ? '#27282A' : '#1E1F21')};
+  color: ${({ isSelectedMonth }) => (isSelectedMonth ? '#DDDDDD' : '#555759')};
 `
 
-const RowOfCellWrapper = styled.div`
+const RowOfCellWrapper = styled.div<RowOfCellWrapperProps>`
   display: flex;
   flex-direction: column;
-  justify-content: ${(props) => (props.justifyContent ? props.justifyContent : 'flex-start')};
-  ${(props) => props.pr && `padding-right: ${props.pr * 8}px`}
+  justify-content: ${({ justifyContent }) => (justifyContent ? justifyContent : 'flex-start')};
+  ${({ pr }) => pr && `padding-right: ${pr * 8}px`}
 `
 
 const DayWrapper = styled.div`
@@ -58,12 +69,13 @@ const FlexDayWrapper = styled('div')`
   justify-content: flex-end;
 `
 
-export const Calendar = ({ startDay, currentDay, totalDays }) => {
+export const Calendar: FC<CalendarProps> = ({ startDay, currentDay, totalDays }) => {
+  console.log(startDay, currentDay)
   const day = startDay.clone().subtract(1, 'day')
   const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone())
 
-  const isCurrentDay = (day) => moment().isSame(day, 'day')
-  const isSelectedMonth = (day) => currentDay.isSame(day, 'month')
+  const isCurrentDay = (day: number) => moment().isSame(day, 'day')
+  const isSelectedMonth = (day: number) => currentDay.isSame(day, 'month')
 
   return (
     <>
