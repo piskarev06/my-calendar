@@ -4,7 +4,7 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-y: hidden;
+  height: 100vh;
 }
 
 code {
@@ -17,4 +17,31 @@ code {
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.nav {
+  padding: 0 1rem;
+}
+
+.nav-wrapper {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #fff;
+  font-size: 2.1rem;
+  padding: 0;
+}
+
+.wr:not(:last-child) {
+  margin-right: 15px;
+}
+
+.wr {
+  display: inline-block;
 }

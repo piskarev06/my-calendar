@@ -1,9 +1,11 @@
-import React, { useState, FC } from 'react'
-import moment from 'moment'
-import { Header } from './components/Header'
-import { ControlPanel } from './components/ControlPanel'
-import { Calendar } from './components/Calendar'
+import React, { FC } from 'react'
 import styled from 'styled-components'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import { Home } from './pages/Home'
+import { Todo } from './pages/Todo'
+import { NotFound } from './pages/NotFound'
+import { Header } from './components/ui/Header'
 
 const Wrapper = styled('div')`
   border-top: 1px solid #737374;
@@ -16,27 +18,16 @@ const Wrapper = styled('div')`
 `
 
 export const App: FC = () => {
-  moment.updateLocale('en', { week: { dow: 1 } })
-  const totalDays = 42
-  window.moment = moment
-
-  const [currentDay, setCurrentDay] = useState(moment())
-  const startDay = currentDay.clone().startOf('month').startOf('week')
-
-  const prevHandler = () => setCurrentDay((prev) => prev.clone().subtract(1, 'month'))
-  const todayHandler = () => setCurrentDay(moment())
-  const nextHandler = () => setCurrentDay((prev) => prev.clone().add(1, 'month'))
-
   return (
-    <Wrapper>
-      <Header />
-      <ControlPanel
-        currentDay={currentDay}
-        prevHandler={prevHandler}
-        todayHandler={todayHandler}
-        nextHandler={nextHandler}
-      />
-      <Calendar startDay={startDay} currentDay={currentDay} totalDays={totalDays} />
-    </Wrapper>
+    <BrowserRouter basename="/my-calendar">
+      <Wrapper>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/todo/:id" element={<Todo />}></Route>
+          <Route path="*" element={<NotFound />}></Route>
+        </Routes>
+      </Wrapper>
+    </BrowserRouter>
   )
 }
