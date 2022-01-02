@@ -24,7 +24,7 @@ export const App: FC = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/todo/:id" element={<Todo />}></Route>
+          <Route path="/todo" element={<Todo />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
       </Wrapper>
