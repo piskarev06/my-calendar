@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
 
 interface ControlPanelProps {
   currentDay: any

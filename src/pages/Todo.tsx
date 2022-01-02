@@ -1,12 +1,10 @@
 import React, { useState, useEffect, FC } from 'react'
-import { getAllTodos } from '../api'
 
-interface TodoType {
-  date: number
-  type: boolean
-  title: string
-  data: string[]
-}
+import { getAllTodos, getBoards, getTodos } from '../api'
+import { TodoList } from '../components/TodoList'
+import { Sidebar } from '../components/ui/Sidebar'
+
+import { TodoType } from '../types'
 
 export const Todo: FC = () => {
   const [todos, setTodos] = useState<TodoType[]>([])
@@ -17,24 +15,13 @@ export const Todo: FC = () => {
       setTodos(data)
     })
   }, [])
-
-  console.log(todos)
   return (
-    <div className="todos">
-      {todos.map((el) => {
-        // prettier-ignore
-        <>
-          <h4>{el.title}</h4>
-          <ul>
-            
-            {el.data.map((note) => {
-              // prettier-ignore
-              <li>{note}</li>
-            })}
-          </ul>
-          {el.type ? <b>Доска</b> : <b>Туду</b>}
-        </>
-      })}
+    <div className="wrapper">
+      <Sidebar></Sidebar>
+
+      <div className="todos">
+        <TodoList todos={todos} />
+      </div>
     </div>
   )
 }

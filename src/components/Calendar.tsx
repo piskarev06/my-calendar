@@ -51,7 +51,7 @@ const DayWrapper = styled.div`
   align-items: center;
   justify-content: center;
   margin: 2px;
-  cursor: pointer; ;
+  cursor: pointer;
 `
 
 const CurrentDay = styled('div')`
