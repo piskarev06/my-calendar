@@ -6,6 +6,7 @@ interface CalendarProps {
   startDay: any
   currentDay: any
   totalDays: number
+  setStartDayTime: any
 }
 
 interface WrapperProps {
@@ -69,13 +70,17 @@ const FlexDayWrapper = styled('div')`
   justify-content: flex-end;
 `
 
-export const Calendar: FC<CalendarProps> = ({ startDay, currentDay, totalDays }) => {
+export const Calendar: FC<CalendarProps> = ({ setStartDayTime, startDay, currentDay, totalDays }) => {
   console.log(startDay, currentDay)
   const day = startDay.clone().subtract(1, 'day')
   const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone())
 
   const isCurrentDay = (day: number) => moment().isSame(day, 'day')
   const isSelectedMonth = (day: number) => currentDay.isSame(day, 'month')
+
+  const startDayQuery = startDay.clone().format('X')
+  const endDayQuery = startDay.clone().add(totalDays, 'days').format('X')
+  console.log(startDayQuery, endDayQuery)
 
   return (
     <>
@@ -91,19 +96,17 @@ export const Calendar: FC<CalendarProps> = ({ startDay, currentDay, totalDays })
         ))}
       </Wrapper>
       <Wrapper>
-        {daysMap.map((dayItem) => (
+        {daysMap.map((el) => (
           <CellWrapper
-            isWeekday={dayItem.day() === 6 || dayItem.day() === 0}
-            key={dayItem.unix()}
-            isSelectedMonth={isSelectedMonth(dayItem)}>
+            isWeekday={el.day() === 6 || el.day() === 0}
+            key={el.unix()}
+            isSelectedMonth={isSelectedMonth(el)}
+            onClick={() => setStartDayTime(el.unix())}
+            >
             <RowOfCellWrapper justifyContent={'flex-end'}>
               <FlexDayWrapper>
                 <DayWrapper>
-                  {isCurrentDay(dayItem) ? (
-                    <CurrentDay>{dayItem.format('D')}</CurrentDay>
-                  ) : (
-                    dayItem.format('D')
-                  )}
+                  {isCurrentDay(el) ? <CurrentDay>{el.format('D')}</CurrentDay> : el.format('D')}
                 </DayWrapper>
               </FlexDayWrapper>
             </RowOfCellWrapper>

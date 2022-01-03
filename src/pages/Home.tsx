@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import moment from 'moment'
 import styled from 'styled-components'
 
@@ -21,12 +21,17 @@ export const Home: FC = () => {
   window.moment = moment
 
   const [currentDay, setCurrentDay] = useState(moment())
+  const [startDayTime, setStartDayTime] = useState(0)
   const startDay = currentDay.clone().startOf('month').startOf('week')
 
   const prevHandler = () => setCurrentDay((prev) => prev.clone().subtract(1, 'month'))
   const todayHandler = () => setCurrentDay(moment())
   const nextHandler = () => setCurrentDay((prev) => prev.clone().add(1, 'month'))
 
+
+  useEffect(() => {
+    console.log(startDayTime)
+  }, [startDayTime])
   return (
     <Wrapper>
       <TopCalendar />
@@ -36,7 +41,7 @@ export const Home: FC = () => {
         todayHandler={todayHandler}
         nextHandler={nextHandler}
       />
-      <Calendar startDay={startDay} currentDay={currentDay} totalDays={totalDays} />
+      <Calendar setStartDayTime={setStartDayTime} startDay={startDay} currentDay={currentDay} totalDays={totalDays} />
     </Wrapper>
   )
 }

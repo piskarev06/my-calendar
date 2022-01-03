@@ -1,10 +1,17 @@
-import React, { FC } from 'react'
+import React, { Dispatch, FC, MouseEventHandler, SetStateAction } from 'react'
 
-export const Sidebar: FC = () => {
+interface SidebarProps {
+  setIsBoard: Dispatch<SetStateAction<boolean>> | any
+}
+export const Sidebar: FC<SidebarProps> = ({ setIsBoard }) => {
   return (
     <ul className="sidebar">
-      <li className="sidebar-item">Туду</li>
-      <li className="sidebar-item">Доски</li>
+      <li className="sidebar-item" onClick={() => setIsBoard(false)}>
+        Туду
+      </li>
+      <li className="sidebar-item" onClick={() => setIsBoard(true)}>
+        Доски
+      </li>
     </ul>
   )
 }

@@ -1,24 +1,21 @@
-import React, { useState, useEffect, FC } from 'react'
+import React, { useState, FC } from 'react'
 
-import { getAllTodos } from '../api'
-import {TodoType} from '../types'
+import { TodoType } from '../types'
 import { TodoItem } from './TodoItem'
 
 interface TodoListProps {
-    todos: TodoType[]
-}
-//@ts-ignore
-export const TodoList: FC<TodoListProps> = ({todos}) => {
-  
-  return (
-    {
-        todos.map((el: any) => {
-            <TodoItem {...el}/>
-        })
-    }
-  )
+  todos: TodoType[]
 }
 
+export const TodoList: FC<TodoListProps> = ({ todos }) => {
+  return (
+    <>
+      {todos.map((el) => (
+        <TodoItem key={el.id} {...el} />
+      ))}
+    </>
+  )
+}
 
 // {todos.length ? (
 //     todos.map((el) => {
