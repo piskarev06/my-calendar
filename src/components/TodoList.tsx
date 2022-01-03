@@ -16,21 +16,3 @@ export const TodoList: FC<TodoListProps> = ({ todos }) => {
     </>
   )
 }
-
-// {todos.length ? (
-//     todos.map((el) => {
-//       return (
-//         <>
-//           <h4>{el.title}</h4>
-//           <ul>
-//             {el.data.map((note) => {
-//               return <li>{note}</li>
-//             })}
-//           </ul>
-//           {el.type ? <b>Доска</b> : <b>Туду</b>}
-//         </>
-//       )
-//     })
-//   ) : (
-//     <div>Loading...</div>
-//   )}

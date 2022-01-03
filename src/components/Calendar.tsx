@@ -79,7 +79,6 @@ export const Calendar: FC<CalendarProps> = ({
   currentDay,
   totalDays,
 }) => {
-  console.log(startDay, currentDay)
   const day = startDay.clone().subtract(1, 'day')
   const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone())
 
@@ -88,7 +87,6 @@ export const Calendar: FC<CalendarProps> = ({
 
   const startDayQuery = startDay.clone().format('X')
   const endDayQuery = startDay.clone().add(totalDays, 'days').format('X')
-  console.log(startDayQuery, endDayQuery)
 
   return (
     <>
@@ -109,8 +107,7 @@ export const Calendar: FC<CalendarProps> = ({
             <CellWrapper
               isWeekday={el.day() === 6 || el.day() === 0}
               key={el.unix()}
-              isSelectedMonth={isSelectedMonth(el)}
-              onClick={() => setStartDayTime(el.unix())}>
+              isSelectedMonth={isSelectedMonth(el)}>
               <RowOfCellWrapper justifyContent={'flex-end'}>
                 <FlexDayWrapper>
                   <DayWrapper>

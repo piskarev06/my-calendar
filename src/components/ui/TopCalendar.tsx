@@ -10,20 +10,3 @@ const Wrapper = styled('div')`
 export const TopCalendar: FC = () => {
   return <Wrapper></Wrapper>
 }
-
-{
-  /* <nav className="nav">
-        <ul className="nav-wrapper">
-          <li className="wr">
-            <Link to={'/'} className="nav-item brand-logo">
-              Home
-            </Link>
-          </li>
-          <li className="wr">
-            <Link className="nav-item" to={'/'}>
-              Profile
-            </Link>
-          </li>
-        </ul>
-      </nav> */
-}

@@ -1,5 +1,6 @@
 {
   "name": "my-calendar",
+  "homepage": "https://piskarev06.github.io/my-calendar/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,6 +13,7 @@
     "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.19",
     "axios": "^0.24.0",
+    "gh-pages": "^3.2.3",
     "json-server": "^0.17.0",
     "moment": "^2.29.1",
     "react": "^17.0.2",
@@ -27,7 +29,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server -p 5000 --watch db.json"
+    "server": "json-server -p 5000 --watch db.json",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
