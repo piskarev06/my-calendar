@@ -28,7 +28,6 @@ export const Home: FC = () => {
   const todayHandler = () => setCurrentDay(moment())
   const nextHandler = () => setCurrentDay((prev) => prev.clone().add(1, 'month'))
 
-
   useEffect(() => {
     console.log(startDayTime)
   }, [startDayTime])
@@ -41,7 +40,13 @@ export const Home: FC = () => {
         todayHandler={todayHandler}
         nextHandler={nextHandler}
       />
-      <Calendar setStartDayTime={setStartDayTime} startDay={startDay} currentDay={currentDay} totalDays={totalDays} />
+      <Calendar
+        startDayTime={startDayTime}
+        setStartDayTime={setStartDayTime}
+        startDay={startDay}
+        currentDay={currentDay}
+        totalDays={totalDays}
+      />
     </Wrapper>
   )
 }

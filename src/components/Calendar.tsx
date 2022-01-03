@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { Link } from 'react-router-dom'
 import moment from 'moment'
 import styled from 'styled-components'
 
@@ -6,6 +7,7 @@ interface CalendarProps {
   startDay: any
   currentDay: any
   totalDays: number
+  startDayTime: number
   setStartDayTime: any
 }
 
@@ -70,7 +72,13 @@ const FlexDayWrapper = styled('div')`
   justify-content: flex-end;
 `
 
-export const Calendar: FC<CalendarProps> = ({ setStartDayTime, startDay, currentDay, totalDays }) => {
+export const Calendar: FC<CalendarProps> = ({
+  setStartDayTime,
+  startDayTime,
+  startDay,
+  currentDay,
+  totalDays,
+}) => {
   console.log(startDay, currentDay)
   const day = startDay.clone().subtract(1, 'day')
   const daysMap = [...Array(totalDays)].map(() => day.add(1, 'day').clone())
@@ -97,20 +105,21 @@ export const Calendar: FC<CalendarProps> = ({ setStartDayTime, startDay, current
       </Wrapper>
       <Wrapper>
         {daysMap.map((el) => (
-          <CellWrapper
-            isWeekday={el.day() === 6 || el.day() === 0}
-            key={el.unix()}
-            isSelectedMonth={isSelectedMonth(el)}
-            onClick={() => setStartDayTime(el.unix())}
-            >
-            <RowOfCellWrapper justifyContent={'flex-end'}>
-              <FlexDayWrapper>
-                <DayWrapper>
-                  {isCurrentDay(el) ? <CurrentDay>{el.format('D')}</CurrentDay> : el.format('D')}
-                </DayWrapper>
-              </FlexDayWrapper>
-            </RowOfCellWrapper>
-          </CellWrapper>
+          <Link to={`/todo/${el.unix()}`}>
+            <CellWrapper
+              isWeekday={el.day() === 6 || el.day() === 0}
+              key={el.unix()}
+              isSelectedMonth={isSelectedMonth(el)}
+              onClick={() => setStartDayTime(el.unix())}>
+              <RowOfCellWrapper justifyContent={'flex-end'}>
+                <FlexDayWrapper>
+                  <DayWrapper>
+                    {isCurrentDay(el) ? <CurrentDay>{el.format('D')}</CurrentDay> : el.format('D')}
+                  </DayWrapper>
+                </FlexDayWrapper>
+              </RowOfCellWrapper>
+            </CellWrapper>
+          </Link>
         ))}
       </Wrapper>
     </>
