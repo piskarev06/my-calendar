@@ -29,13 +29,16 @@ const Wrapper = styled.div<WrapperProps>`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1px;
+  //
   background-color: ${({ isHeader }) => (isHeader ? '#1E1F21' : '#4D4C4D')};
   ${({ isHeader }) => isHeader && `border-bottom: 1px solid #4D4C4D`}
+  height:  ${({ isHeader }) => !isHeader && `calc(100vh - 170px)`};
 `
 
 const CellWrapper = styled.div<CellWrapperProps>`
   min-height: ${({ isHeader }) => (isHeader ? 24 : 80)}px;
-  min-width: 140px;
+  height: 100%;
+  max-width: 100%;
   background-color: ${({ isWeekday }) => (isWeekday ? '#27282A' : '#1E1F21')};
   color: ${({ isSelectedMonth }) => (isSelectedMonth ? '#DDDDDD' : '#555759')};
 `
@@ -103,7 +106,7 @@ export const Calendar: FC<CalendarProps> = ({
       </Wrapper>
       <Wrapper>
         {daysMap.map((el) => (
-          <Link to={`/todo/${el.unix()}`}>
+          <Link className="link link--16" to={`/todo/${el.unix()}`}>
             <CellWrapper
               isWeekday={el.day() === 6 || el.day() === 0}
               key={el.unix()}
