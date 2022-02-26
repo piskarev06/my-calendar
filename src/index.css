@@ -102,3 +102,57 @@ code {
 .content__nothing {
   text-align: center;
 }
+
+.modal {
+  position: fixed;
+
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+
+  background-color: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal__content {
+  padding: 20px;
+
+  width: 50%;
+
+  border-radius: 12px;
+  background-color: #fff;
+
+  transform: scale(0.5);
+  transition: 0.4s all;
+}
+
+.modal__content.active {
+  transform: scale(1);
+}
+
+.create {
+  text-align: center;
+}
+
+.create__title {
+  margin: 0 0 20px;
+}
+
+.create__form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

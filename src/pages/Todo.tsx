@@ -4,12 +4,14 @@ import styled from 'styled-components'
 
 import { getTodosByTime } from '../api'
 import { TodoList } from '../components/TodoList'
+import { Modal } from '../components/Modal'
 import { Sidebar } from '../components/ui/Sidebar'
 import { Preloader } from '../components/ui/Preloader'
 
 import { TodoType } from '../types'
 
 import { Container } from '../share/styles'
+import { CreateModal } from '../components/CreateModal'
 
 const TodoInner = styled.div`
   display: flex;
@@ -36,6 +38,8 @@ export const Todo: FC = () => {
 
   const { data } = useParams()
 
+  const [modalActive, setModalActive] = useState(false)
+
   useEffect(() => {
     //@ts-ignore
     getTodosByTime(+data, isBoard).then((res) => {
@@ -44,33 +48,38 @@ export const Todo: FC = () => {
       setLoading(false)
     })
     console.log(todos)
-  }, [isBoard])
+  }, [isBoard, todos])
 
   return (
-    <div className="todo">
-      <Container>
-        <TodoInner>
-          <Sidebar setIsBoard={setIsBoard}></Sidebar>
+    <>
+      <div className="todo">
+        <Container>
+          <TodoInner>
+            <Sidebar setIsBoard={setIsBoard}></Sidebar>
 
-          <div className="todo__content">
-            {!loading ? (
-              todos.length ? (
-                <Todos>
-                  <TodoList todos={todos} />
-                </Todos>
+            <div className="todo__content">
+              {!loading ? (
+                todos.length ? (
+                  <Todos>
+                    <TodoList todos={todos} />
+                  </Todos>
+                ) : (
+                  <h4 className="content__nothing">На этот день нет планов</h4>
+                )
               ) : (
-                <h4 className="content__nothing">На этот день нет планов</h4>
-              )
-            ) : (
-              <Preloader />
-            )}
+                <Preloader />
+              )}
 
-            <div className="content__bottom">
-              <button className="content__modal">Создать запись</button>
+              <div className="content__bottom">
+                <button className="content__modal" onClick={() => setModalActive(true)}>
+                  Создать запись
+                </button>
+              </div>
             </div>
-          </div>
-        </TodoInner>
-      </Container>
-    </div>
+          </TodoInner>
+        </Container>
+      </div>
+      <CreateModal active={modalActive} setActive={setModalActive} />
+    </>
   )
 }
