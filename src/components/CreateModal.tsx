@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react'
+import { useParams } from 'react-router'
 import moment from 'moment'
 import axios from 'axios'
+
 
 import { Modal } from './Modal'
 import { createTodo } from '../api'
@@ -9,25 +11,30 @@ import { JsxElement } from 'typescript'
 interface ModalProps {
   active: boolean
   setActive: any
+  setCounter: any
 }
-export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
+export const CreateModal: FC<ModalProps> = ({ active, setActive, setCounter }) => {
+  const { data } = useParams()
+
   const [title, setTitle] = useState('')
   const [type, setType] = useState('board')
-  const [data, setData] = useState('')
-  const [date, setDate] = useState(moment().unix())
+  const [dataInput, setData] = useState('')
+  const [date, setDate] = useState(data)
   const [countData, setCountData] = useState(1)
 
   const submitHander = (e: any) => {
     e.preventDefault()
-    setDate(moment().unix())
 
-    createTodo(date, type, title, data)
+    //@ts-ignore
+    createTodo(date, type, title, dataInput)
 
     setTitle('')
     setType('board')
     setData('')
-    setDate(moment().unix())
     setActive(false)
+    //@ts-ignore
+    setCounter(prev => prev+1)
+   
   }
 
   const typeHandler = (e: any) => {
@@ -71,7 +78,7 @@ export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
 
           <label>
             Запись:
-            <input type="text" value={data} name="data" onChange={(e) => dataHandler(e)} />
+            <input type="text" value={dataInput} name="data" onChange={(e) => dataHandler(e)} />
           </label>
 
           <button type="submit">Отправить</button>

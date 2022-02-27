@@ -2,13 +2,15 @@ import React, { useState, useEffect, FC } from 'react'
 import { useParams } from 'react-router'
 import styled from 'styled-components'
 
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions} from "../hooks/useActions";
 import { getTodosByTime } from '../api'
 import { TodoList } from '../components/TodoList'
 import { Modal } from '../components/Modal'
 import { Sidebar } from '../components/ui/Sidebar'
 import { Preloader } from '../components/ui/Preloader'
 
-import { TodoType } from '../types'
+import { TodoType } from '../types/todo'
 
 import { Container } from '../share/styles'
 import { CreateModal } from '../components/CreateModal'
@@ -32,23 +34,32 @@ const Todos = styled.ul`
 `
 
 export const Todo: FC = () => {
-  const [todos, setTodos] = useState<TodoType[]>([])
+  const {page, error, loading, todos, limit} = useTypedSelector(state => state.todo)
+  
+  const {fetchTodos, setTodoPage} = useActions()
+  const [counter, setCounter] = useState(0)
   const [isBoard, setIsBoard] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [modalActive, setModalActive] = useState(false)
 
   const { data } = useParams()
 
-  const [modalActive, setModalActive] = useState(false)
-
   useEffect(() => {
     //@ts-ignore
-    getTodosByTime(+data, isBoard).then((res) => {
-      const data = res.data
-      setTodos(data)
-      setLoading(false)
-    })
+    fetchTodos(+data, isBoard)
     console.log(todos)
-  }, [isBoard, todos])
+    console.log(counter)
+
+    return (
+      setCounter(0)
+    )
+  }, [isBoard, counter])
+
+  if (loading) {
+    return <Preloader />
+  }
+  if (error) {
+    return <h1>{error}</h1>
+  }
 
   return (
     <>
@@ -58,17 +69,15 @@ export const Todo: FC = () => {
             <Sidebar setIsBoard={setIsBoard}></Sidebar>
 
             <div className="todo__content">
-              {!loading ? (
+              {
                 todos.length ? (
                   <Todos>
-                    <TodoList todos={todos} />
+                    <TodoList setCounter counter={counter} todos={todos} />
                   </Todos>
                 ) : (
                   <h4 className="content__nothing">На этот день нет планов</h4>
                 )
-              ) : (
-                <Preloader />
-              )}
+              }
 
               <div className="content__bottom">
                 <button className="content__modal" onClick={() => setModalActive(true)}>
@@ -79,7 +88,7 @@ export const Todo: FC = () => {
           </TodoInner>
         </Container>
       </div>
-      <CreateModal active={modalActive} setActive={setModalActive} />
+      <CreateModal setCounter={setCounter} active={modalActive} setActive={setModalActive} />
     </>
   )
 }

@@ -11,6 +11,7 @@ export const getTodosByTime = async (startDayTime: number, isBoard: boolean) => 
   return await axios.get(
     `${API_URL}/todos?date_gte=${startDayTime}&date_lte=${startDayTime + 86399}${filtr}`,
   )
+
 }
 
 export const createTodo = async (date: number, type: any, title: string, data: any) => {
