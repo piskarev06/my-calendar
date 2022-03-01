@@ -7,37 +7,42 @@ export interface TodoType {
 }
 
 export interface TodoState {
-    todos: TodoType[]
-    loading: boolean
-    error: null | string
-    page: number
-    limit: number
+  todos: TodoType[]
+  loading: boolean
+  error: null | string
+  page: number
+  limit: number
 }
 
 export enum TodoActionTypes {
-    FETCH_TODOS= 'FETCH_TODOS',
-    FETCH_TODOS_SUCCESS= 'FETCH_TODOS_SUCCESS',
-    FETCH_TODOS_ERROR= 'FETCH_TODOS_ERROR',
-    SET_TODO_PAGE = 'SET_TODO_PAGE'
+  FETCH_TODOS = 'FETCH_TODOS',
+  ACTION_TODOS_SUCCESS = 'ACTION_TODOS_SUCCESS',
+  ACTION_TODOS_ERROR = 'ACTION_TODOS_ERROR',
+  SET_TODO_PAGE = 'SET_TODO_PAGE',
+  ADD_TODO = 'ADD_TODO',
 }
 interface FetchTodoAction {
-    type: TodoActionTypes.FETCH_TODOS
+  type: TodoActionTypes.FETCH_TODOS
 }
-interface FetchTodoSuccessAction {
-    type: TodoActionTypes.FETCH_TODOS_SUCCESS;
-    payload: any[];
+interface ActionTodoSuccessAction {
+  type: TodoActionTypes.ACTION_TODOS_SUCCESS
+  payload: any[] | TodoType | any
 }
-interface FetchTodoErrorAction {
-    type: TodoActionTypes.FETCH_TODOS_ERROR;
-    payload: string;
+interface ActionTodoErrorAction {
+  type: TodoActionTypes.ACTION_TODOS_ERROR
+  payload: string
 }
 interface SetTodoPage {
-    type: TodoActionTypes.SET_TODO_PAGE;
-    payload: number;
+  type: TodoActionTypes.SET_TODO_PAGE
+  payload: number
+}
+interface AddTodo {
+  type: TodoActionTypes.ADD_TODO
 }
 
 export type TodoAction =
-    FetchTodoAction
-    | FetchTodoErrorAction
-    | FetchTodoSuccessAction
-    | SetTodoPage
+  | FetchTodoAction
+  | ActionTodoErrorAction
+  | ActionTodoSuccessAction
+  | SetTodoPage
+  | AddTodo

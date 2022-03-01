@@ -1,40 +1,33 @@
 import React, { FC, useState } from 'react'
 import { useParams } from 'react-router'
-import moment from 'moment'
-import axios from 'axios'
 
-
+import { useActions } from '../hooks/useActions'
 import { Modal } from './Modal'
-import { createTodo } from '../api'
-import { JsxElement } from 'typescript'
 
 interface ModalProps {
   active: boolean
   setActive: any
-  setCounter: any
 }
-export const CreateModal: FC<ModalProps> = ({ active, setActive, setCounter }) => {
+export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
   const { data } = useParams()
+
+  const { addTodo } = useActions()
 
   const [title, setTitle] = useState('')
   const [type, setType] = useState('board')
   const [dataInput, setData] = useState('')
   const [date, setDate] = useState(data)
-  const [countData, setCountData] = useState(1)
 
   const submitHander = (e: any) => {
     e.preventDefault()
 
     //@ts-ignore
-    createTodo(date, type, title, dataInput)
+    addTodo(date, type, title, dataInput)
 
     setTitle('')
     setType('board')
     setData('')
     setActive(false)
-    //@ts-ignore
-    setCounter(prev => prev+1)
-   
   }
 
   const typeHandler = (e: any) => {

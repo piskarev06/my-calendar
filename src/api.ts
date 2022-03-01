@@ -11,19 +11,32 @@ export const getTodosByTime = async (startDayTime: number, isBoard: boolean) => 
   return await axios.get(
     `${API_URL}/todos?date_gte=${startDayTime}&date_lte=${startDayTime + 86399}${filtr}`,
   )
-
 }
 
-export const createTodo = async (date: number, type: any, title: string, data: any) => {
-  if (type == 'todo') type = false
-  else type = true
-  data = [data]
+export const createTodo = async (
+  id: string,
+  date: number,
+  type: string,
+  title: string,
+  data: string[],
+) => {
+  // if (type == 'todo') type = false
+  // else type = true
+  // data = [data]
 
   axios.post(`${API_URL}/todos`, {
-    id: uuid(),
+    id,
     date,
     type,
     title,
     data,
   })
+
+  return {
+    id,
+    date,
+    type,
+    title,
+    data,
+  }
 }
