@@ -18,12 +18,8 @@ export const createTodo = async (
   date: number,
   type: string,
   title: string,
-  data: string[],
+  data: any[],
 ) => {
-  // if (type == 'todo') type = false
-  // else type = true
-  // data = [data]
-
   axios.post(`${API_URL}/todos`, {
     id,
     date,

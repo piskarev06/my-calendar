@@ -23,10 +23,10 @@ export const TodoItem: FC<TodoItemProps> = ({ data, date, title, type, id }) => 
         <input className="item__input" type="checkbox" id={String(id)} />
         <ul className="item__text">
           {data.map((el, i) => (
-            <li key={i+el+i} className="list__item">
+            <li key={i + el + i} className="list__item">
               <input className="list__input" type="checkbox" id={el + i} />
               <label className="list__title" htmlFor={el + i}>
-                {el}
+                {el.inputValue}
               </label>
               <button>DELETE</button>
             </li>

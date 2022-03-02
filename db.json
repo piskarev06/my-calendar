@@ -1,256 +1,43 @@
 {
   "todos": [
     {
-      "id": 1,
-      "date": 1645822800,
+      "id": "97b91b1c-3414-4cbf-8d96-38bff06128a4",
+      "date": "1646168400",
       "type": false,
-      "title": "Список покупок",
+      "title": "sssssss",
       "data": [
-        "хлеб",
-        "молоко",
-        "фрукты"
+        {
+          "id": 1,
+          "inputValue": "ddddd"
+        },
+        {
+          "id": 2,
+          "inputValue": "erre"
+        },
+        {
+          "id": 3,
+          "inputValue": "2"
+        }
       ]
     },
     {
-      "id": 2,
-      "date": 1645822900,
-      "type": false,
-      "title": "Список дел",
-      "data": [
-        "сходить в магазин",
-        "постричь газон",
-        "сьесть мандарин"
-      ]
-    },
-    {
-      "id": 3,
-      "date": 1645822800,
-      "type": false,
-      "title": "Список покупок",
-      "data": [
-        "хлеб",
-        "молоко",
-        "фрукты"
-      ]
-    },
-    {
-      "id": 4,
-      "date": 1645822900,
-      "type": false,
-      "title": "Список дел",
-      "data": [
-        "сходить в магазин",
-        "постричь газон",
-        "сьесть мандарин"
-      ]
-    },
-    {
-      "id": 5,
-      "date": 1645822800,
-      "type": false,
-      "title": "Список покупок",
-      "data": [
-        "хлеб",
-        "молоко",
-        "фрукты"
-      ]
-    },
-    {
-      "id": "eb8c4975-8f8f-4e94-8334-c6956021ff18",
-      "date": "1643922000",
-      "type": false,
-      "title": "ssssssssss",
-      "data": [
-        "sssssssssss"
-      ]
-    },
-    {
-      "id": "ee707081-6a60-460d-b5fc-2471750f5da9",
-      "date": "1643922000",
-      "type": false,
-      "title": "ssssssssssssssss",
-      "data": [
-        "sssssssssssss"
-      ]
-    },
-    {
-      "id": "1a518d7d-a767-4c90-8314-8d146d9e5d7b",
-      "date": "1641330000",
-      "type": false,
-      "title": "1212wwwww",
-      "data": [
-        "wwwwwwwwww"
-      ]
-    },
-    {
-      "id": "48303cf6-6529-486a-9340-027a434fe930",
-      "date": "1644354000",
-      "type": false,
-      "title": "ssssssss",
-      "data": [
-        "sssssss"
-      ]
-    },
-    {
-      "id": "68e3a30f-fd2f-4b7f-8d39-f83909b294d4",
-      "date": "1644354000",
+      "id": "c745970e-ed4f-4700-b7e9-f11e77abc14f",
+      "date": "1646168400",
       "type": true,
-      "title": "ssssssss",
+      "title": "ewewewe",
       "data": [
-        "ssssssssss"
-      ]
-    },
-    {
-      "id": "ff46e3f2-78d3-4a44-8537-de2829ace6f3",
-      "date": "1644354000",
-      "type": false,
-      "title": "dddddddddddddd",
-      "data": [
-        "dddddddddddddd"
-      ]
-    },
-    {
-      "id": "c7d3e1b3-3ac9-4fda-b4ef-c9a1c6f91fc6",
-      "date": "1644354000",
-      "type": true,
-      "title": "dghghg",
-      "data": [
-        "hgh"
-      ]
-    },
-    {
-      "id": "dc465539-b351-4905-bb41-eefea6328d58",
-      "date": "1644008400",
-      "type": false,
-      "title": "sasasa",
-      "data": [
-        "sasas"
-      ]
-    },
-    {
-      "id": "81113f1d-9087-4588-aa96-69c28c6bb513",
-      "date": "1644008400",
-      "type": false,
-      "title": "sasas",
-      "data": [
-        "asas"
-      ]
-    },
-    {
-      "id": "7afc6389-6403-45a8-930a-bab0e3f40058",
-      "date": "1644008400",
-      "type": false,
-      "title": "gfgfg",
-      "data": [
-        "gfgfgfg"
-      ]
-    },
-    {
-      "id": "34b96af5-d692-4b6d-95a1-b1a01326491c",
-      "date": "1644008400",
-      "type": true,
-      "title": "asasasa",
-      "data": [
-        "sas"
-      ]
-    },
-    {
-      "id": "fd4b0d12-9f51-4158-ba78-8b6680f09e4b",
-      "date": "1644008400",
-      "type": true,
-      "title": "dsdsdsd",
-      "data": [
-        "dsdsdsd"
-      ]
-    },
-    {
-      "id": "96d431bb-f882-4c18-9d23-e35db2aafbf5",
-      "date": "1643835600",
-      "type": false,
-      "title": "sdsd",
-      "data": [
-        "sdsd"
-      ]
-    },
-    {
-      "id": "a3112f49-712e-4641-8c05-c07b57e404f7",
-      "date": "1646082000",
-      "type": false,
-      "title": "huba",
-      "data": [
-        "buba"
-      ]
-    },
-    {
-      "id": "870bb99e-ea4a-4568-afc7-29d2189ab2c2",
-      "date": "1646082000",
-      "type": false,
-      "title": "sddsdsd",
-      "data": [
-        "sdsdsd"
-      ]
-    },
-    {
-      "id": "6d11450b-38a4-492c-a891-1aa1be010b5a",
-      "date": "1646082000",
-      "type": false,
-      "title": "asasa",
-      "data": [
-        "sasa"
-      ]
-    },
-    {
-      "id": "08256136-c698-47cb-9a33-1963736a5c83",
-      "date": "1646082000",
-      "type": false,
-      "title": "dsdsd",
-      "data": [
-        "sdsds"
-      ]
-    },
-    {
-      "id": "eecb6bb2-33a5-4758-b5b4-c13af9fb39de",
-      "date": "1646082000",
-      "type": false,
-      "title": "saaaaaaaaaaaaaa",
-      "data": [
-        "aaaaaaaaaaaaaaaa"
-      ]
-    },
-    {
-      "id": "53e931bd-63df-4a0d-b079-872a9e6ec366",
-      "date": "1646092000",
-      "type": false,
-      "title": "sasasasa",
-      "data": [
-        "sasas"
-      ]
-    },
-    {
-      "id": "2ff0c9e5-50c6-478c-b290-aae0d410cd96",
-      "date": "1646092000",
-      "type": false,
-      "title": "xcxcxc",
-      "data": [
-        "xcxcxx"
-      ]
-    },
-    {
-      "id": "5590a638-b731-4f23-a88e-261637cdf533",
-      "date": "1646092000",
-      "type": false,
-      "title": "sdsdsd",
-      "data": [
-        "sdsd"
-      ]
-    },
-    {
-      "id": "3199f00c-14d8-40be-88dd-e3c0094840ea",
-      "date": "1646092000",
-      "type": false,
-      "title": "dddddddddddds",
-      "data": [
-        "sdsdsdsd"
+        {
+          "id": 1,
+          "inputValue": "sdsd"
+        },
+        {
+          "id": 2,
+          "inputValue": "ddddddddd"
+        },
+        {
+          "id": 3,
+          "inputValue": "sdsds"
+        }
       ]
     }
   ]

@@ -153,10 +153,47 @@ code {
 
 .create__form {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 }
 
+.create__inner {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.form__label {
+  padding: 5px;
+
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__input {
+  width: 70%;
+  margin-left: 10px;
+}
+
+.form__select {
+  margin-left: 10px;
+}
+
+.form__clicker {
+  padding: 5px;
+  font-size: 30px;
+
+  cursor: pointer;
+}
+
+.form__button {
+  margin: 0 auto;
+}
+
+.select__wrapper {
+  display: flex;
+}
 
 /*  */
 .lds-ring {

@@ -2,7 +2,6 @@ import React, { useState, useEffect, FC } from 'react'
 
 import { useTypedSelector } from '../hooks/useTypedSelector'
 import { TodoItem } from './TodoItem'
-import { TodoType } from '../types/todo'
 
 interface TodoListProps {
   data: any
@@ -12,8 +11,9 @@ interface TodoListProps {
 export const TodoList: FC<TodoListProps> = () => {
   const { page, error, loading, todos, limit } = useTypedSelector((state) => state.todo)
 
+  console.log(todos)
   useEffect(() => {
-    console.log(page, error, loading, todos, limit)
+    console.log(todos)
   }, [todos])
 
   return (

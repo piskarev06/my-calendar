@@ -11,7 +11,7 @@ export const fetchTodos = (startDayTime: number, isBoard: boolean, page = 1, lim
 
       getTodosByTime(startDayTime, isBoard)
         .then((response) => {
-          dispatch({ type: TodoActionTypes.ACTION_TODOS_SUCCESS, payload: response.data })
+          dispatch({ type: TodoActionTypes.FETCH_TODOS_SUCCESS, payload: response.data })
         })
         .catch((e) => {
           dispatch({
@@ -28,26 +28,26 @@ export const fetchTodos = (startDayTime: number, isBoard: boolean, page = 1, lim
   }
 }
 
-export const addTodo = (date: number, type: any, title: string, data: any) => {
+export const addTodo = (date: number, type: any, title: string, data: any[]) => {
   return async (dispatch: Dispatch<TodoAction>) => {
     try {
       dispatch({ type: TodoActionTypes.ADD_TODO })
 
       if (type == 'todo') type = false
       else type = true
-      data = [data]
       let id = uuid()
 
       createTodo(id, date, type, title, data)
         .then((response) => {
-          dispatch({ type: TodoActionTypes.ACTION_TODOS_SUCCESS, payload: response })
-          console.log(response)
+          //@ts-ignore
+          dispatch({ type: TodoActionTypes.ADD_TODO_SUCCESS, payload: [response] })
         })
         .catch((e) => {
           dispatch({
             type: TodoActionTypes.ACTION_TODOS_ERROR,
             payload: 'Произошла ошибка при добавлении новой записи',
           })
+          console.log(e)
         })
     } catch (e) {
       dispatch({

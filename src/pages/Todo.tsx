@@ -43,6 +43,11 @@ export const Todo: FC = () => {
     fetchTodos(+data, isBoard)
   }, [isBoard])
 
+  console.log(todos)
+  useEffect(() => {
+    console.log(todos)
+  }, [todos])
+
   if (loading) {
     return <Preloader />
   }
