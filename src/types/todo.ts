@@ -4,6 +4,7 @@ export interface TodoType {
   type: boolean
   title: string
   data: any[]
+  isComplete: boolean
 }
 
 export interface TodoState {

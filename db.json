@@ -1,42 +1,20 @@
 {
   "todos": [
     {
-      "id": "97b91b1c-3414-4cbf-8d96-38bff06128a4",
-      "date": "1646168400",
+      "id": "6c5a105b-7208-43e1-b140-2e66e69dc19c",
+      "date": "1646341200",
       "type": false,
-      "title": "sssssss",
+      "title": "sdsd",
       "data": [
         {
           "id": 1,
-          "inputValue": "ddddd"
+          "inputValue": "dsdsd",
+          "isComplete": false
         },
         {
           "id": 2,
-          "inputValue": "erre"
-        },
-        {
-          "id": 3,
-          "inputValue": "2"
-        }
-      ]
-    },
-    {
-      "id": "c745970e-ed4f-4700-b7e9-f11e77abc14f",
-      "date": "1646168400",
-      "type": true,
-      "title": "ewewewe",
-      "data": [
-        {
-          "id": 1,
-          "inputValue": "sdsd"
-        },
-        {
-          "id": 2,
-          "inputValue": "ddddddddd"
-        },
-        {
-          "id": 3,
-          "inputValue": "sdsds"
+          "inputValue": "sdsdsdsd",
+          "isComplete": false
         }
       ]
     }

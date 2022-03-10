@@ -15,7 +15,7 @@ export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
 
   const [title, setTitle] = useState('')
   const [type, setType] = useState('board')
-  const [dataInput, setData] = useState([{ id: 1, inputValue: '' }])
+  const [dataInput, setData] = useState([{ id: 1, inputValue: '', isComplete: false }])
   const [date, setDate] = useState(data)
 
   const submitHander = (e: any) => {
@@ -26,7 +26,7 @@ export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
 
     setTitle('')
     setType('board')
-    setData([{ id: 1, inputValue: '' }])
+    setData([{ id: 1, inputValue: '', isComplete: false }])
     setActive(false)
   }
 
@@ -42,18 +42,28 @@ export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
     setData(
       dataInput.map((el) => {
         if (el.id === id) {
-          let newObj = { id: el.id, inputValue: value }
+          let newObj = { id: el.id, inputValue: value, isComplete: false }
           return newObj
         } else return el
       }),
     )
   }
 
-  const dataCountHandler = () => {
+  const dataCountAddHandler = () => {
     let lastEl = dataInput.length - 1
     let newId = dataInput[lastEl].id + 1
 
-    setData([...dataInput, { id: newId, inputValue: '' }])
+    setData([...dataInput, { id: newId, inputValue: '', isComplete: false }])
+  }
+
+  const dataCountMinusHandler = (id: number) => {
+    let copyArr = [...dataInput]
+
+    let resultArr = copyArr.filter((el) => {
+      return el.id !== id
+    })
+
+    setData(resultArr)
   }
 
   useEffect(() => {
@@ -97,12 +107,21 @@ export const CreateModal: FC<ModalProps> = ({ active, setActive }) => {
                       name={`${i}data`}
                       onChange={(e) => dataHandler(e.target.value, el.id)}
                     />
+                    {i !== 0 && (
+                      <span
+                        className="form__clicker form__clicker--minus"
+                        onClick={(e) => dataCountMinusHandler(el.id)}>
+                        -
+                      </span>
+                    )}
                   </label>
                 </>
               )
             })}
 
-            <span className="form__clicker" onClick={() => dataCountHandler()}>
+            <span
+              className="form__clicker form__clicker--add"
+              onClick={() => dataCountAddHandler()}>
               {' '}
               +{' '}
             </span>
