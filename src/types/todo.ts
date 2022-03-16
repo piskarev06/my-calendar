@@ -4,7 +4,6 @@ export interface TodoType {
   type: boolean
   title: string
   data: any[]
-  isComplete: boolean
 }
 
 export interface TodoState {
@@ -23,6 +22,8 @@ export enum TodoActionTypes {
   SET_TODO_PAGE = 'SET_TODO_PAGE',
   ADD_TODO = 'ADD_TODO',
   ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS',
+  DATA_COMPLETE_CHANGE = 'DATA_COMPLETE_CHANGE',
+  DATA_COMPLETE_CHANGE_SUCCESS = 'DATA_COMPLETE_CHANGE_SUCCESS',
 }
 interface ActionTodoErrorAction {
   type: TodoActionTypes.ACTION_TODOS_ERROR
@@ -45,6 +46,12 @@ interface AddTodoAction {
 interface AddTodoSuccessAction {
   type: TodoActionTypes.ADD_TODO_SUCCESS
 }
+interface DataCompleteChangeAction {
+  type: TodoActionTypes.DATA_COMPLETE_CHANGE
+}
+interface DataCompleteChangeSuccessAction {
+  type: TodoActionTypes.DATA_COMPLETE_CHANGE_SUCCESS
+}
 
 export type TodoAction =
   | FetchTodoAction
@@ -53,3 +60,5 @@ export type TodoAction =
   | SetTodoPage
   | AddTodoAction
   | AddTodoSuccessAction
+  | DataCompleteChangeAction
+  | DataCompleteChangeSuccessAction

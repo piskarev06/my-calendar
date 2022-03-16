@@ -18,10 +18,12 @@ export const todoReducer = (state = initialState, action: TodoAction): TodoState
       return { ...state, loading: true }
     case TodoActionTypes.ADD_TODO_SUCCESS:
       //@ts-ignore
-      console.log(action.payload)
-      //@ts-ignore
       return { ...state, loading: false, todos: [...state.todos, ...action.payload] }
-
+    case TodoActionTypes.DATA_COMPLETE_CHANGE:
+      return { ...state, loading: true }
+    case TodoActionTypes.DATA_COMPLETE_CHANGE_SUCCESS:
+      //@ts-ignore
+      return { ...state, loading: false, data: action.payload }
     case TodoActionTypes.ACTION_TODOS_ERROR:
       return { ...state, loading: false, error: action.payload }
     default:

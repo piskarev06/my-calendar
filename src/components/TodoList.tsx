@@ -11,7 +11,6 @@ interface TodoListProps {
 export const TodoList: FC<TodoListProps> = () => {
   const { page, error, loading, todos, limit } = useTypedSelector((state) => state.todo)
 
-  console.log(todos)
   useEffect(() => {
     console.log(todos)
   }, [todos])

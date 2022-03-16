@@ -1,32 +1,33 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
+import { resourceLimits } from 'worker_threads'
+import { changeData } from '../api'
+import { dataCompleteChange } from '../store/action-creators/todo'
 import { TodoType } from '../types/todo'
 
 interface TodoItemProps extends TodoType {}
 
-export const TodoItem: FC<TodoItemProps> = ({ data, date, title, type, id, isComplete }) => {
-  const [copyData, setCopyData] = useState([...data])
+export const TodoItem: FC<TodoItemProps> = ({ data, date, title, type, id }) => {
+  const [newData, setNewData] = useState([...data])
 
-  const isCompleteHandler = (id: number) => {
-    let newArr = [...copyData]
+  const isCompleteHandler = (id: number, todoId: number) => {
+    let result = newData.map((el) => {
+      if (el.id === id) return { ...el, isComplete: !el.isComplete }
+      else return el
+    })
 
-    // newArr.map((el) => {
-    //   if (el.id === id) return { id: id, inputValue: el.inputValue, isComplete: !el.isComplete }
-    //   else return el
-    // })
+    setNewData(result)
 
-    // setCopyData(newArr)
-    // console.log(copyData)
+    let todo = {
+      id: todoId,
+      date,
+      type,
+      title,
+      data,
+    }
 
-    setCopyData(
-      newArr.map((el) => {
-        if (el.id === id) {
-          let newObj = { id: el.id, inputValue: el.inputValue, isComplete: !el.isComplete }
-          return newObj
-        } else return el
-      }),
-    )
+    console.log(todo, newData)
 
-    console.log(copyData)
+    dataCompleteChange(todo, newData)
   }
 
   return (
@@ -37,16 +38,16 @@ export const TodoItem: FC<TodoItemProps> = ({ data, date, title, type, id, isCom
       <input className="item__input" type="checkbox" id={String(id)} />
       <ul className="item__text">
         {data.map((el, i) => (
-          <li key={i + el + i} className="list__item">
+          <li key={i + el.id + i} className="list__item">
             <input
               className="list__input"
               //@ts-ignore
-              value={isComplete}
+              checked={el.isComplete}
               type="checkbox"
-              id={el + i}
-              onClick={() => isCompleteHandler(el.id)}
+              id={el.id + i}
+              onClick={() => isCompleteHandler(el.id, id)}
             />
-            <label className="list__title" htmlFor={el + i}>
+            <label className="list__title" htmlFor={el.id + i}>
               {el.inputValue}
             </label>
             <button>DELETE</button>

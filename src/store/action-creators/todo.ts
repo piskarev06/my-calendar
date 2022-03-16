@@ -1,8 +1,8 @@
 import { Dispatch } from 'redux'
 import { v4 as uuid } from 'uuid'
 
-import { TodoAction, TodoActionTypes } from '../../types/todo'
-import { getTodosByTime, createTodo } from '../../api'
+import { TodoAction, TodoActionTypes, TodoType } from '../../types/todo'
+import { getTodosByTime, createTodo, changeData } from '../../api'
 
 export const fetchTodos = (startDayTime: number, isBoard: boolean, page = 1, limit = 4) => {
   return async (dispatch: Dispatch<TodoAction>) => {
@@ -53,6 +53,35 @@ export const addTodo = (date: number, type: any, title: string, data: any[]) => 
       dispatch({
         type: TodoActionTypes.ACTION_TODOS_ERROR,
         payload: 'Произошла ошибка при добавлении новой записи',
+      })
+    }
+  }
+}
+
+export const dataCompleteChange = (todo: TodoType, newData: any[]) => {
+  return async (dispatch: Dispatch<TodoAction>) => {
+    try {
+      dispatch({ type: TodoActionTypes.DATA_COMPLETE_CHANGE })
+
+      changeData(todo, newData)
+        .then((response) => {
+          //@ts-ignore
+          dispatch({
+            type: TodoActionTypes.DATA_COMPLETE_CHANGE_SUCCESS,
+            payload: [response.newData],
+          })
+        })
+        .catch((e) => {
+          dispatch({
+            type: TodoActionTypes.ACTION_TODOS_ERROR,
+            payload: 'Произошла ошибка при выполнении задачи',
+          })
+          console.log(e)
+        })
+    } catch (e) {
+      dispatch({
+        type: TodoActionTypes.ACTION_TODOS_ERROR,
+        payload: 'Произошла ошибка при выполнении задачи',
       })
     }
   }

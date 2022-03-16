@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { v4 as uuid } from 'uuid'
+import { TodoType } from './types/todo'
 
 const API_URL = 'http://localhost:5000'
 
@@ -34,5 +35,16 @@ export const createTodo = async (
     type,
     title,
     data,
+  }
+}
+
+export const changeData = async (todo: TodoType, newData: any[]) => {
+  axios.put(`${API_URL}/todos/${todo.id}`, {
+    ...todo,
+    data: newData,
+  })
+
+  return {
+    newData,
   }
 }
